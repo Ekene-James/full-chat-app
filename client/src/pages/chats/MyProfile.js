@@ -32,7 +32,7 @@ function MyProfile() {
                 </Button>
 
             )
-        }
+        } 
 
         {
             openSettings && <ProfileSettings/>

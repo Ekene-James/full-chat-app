@@ -327,7 +327,11 @@ function Dashboard(props) {
       open={chatCtx.state.snackBarObj.open} 
       setOpen={() => chatCtx.dispatch(handleSnackBar({...chatCtx.state.snackBarObj,open:false}))} 
       />
-    
+      <CustomModal show={chatCtx.state.modal.open} handleClose={() => { chatCtx.dispatch(modal({open:false,active:''})) }} 
+      title={chatCtx.state.modal.active}
+      >
+      <ContentsContainer/>
+    </CustomModal>
     </Box>
   );
 }

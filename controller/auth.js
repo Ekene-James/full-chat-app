@@ -20,9 +20,7 @@ exports.register = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
-// desc     login
-//route     post /api/v1/auth/login
-//access    public
+
 exports.login = asyncHandler(async (req, res, next) => {
   const { password, email } = req.body;
   if (!password || !email) {
@@ -76,9 +74,7 @@ exports.getHome = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: {user} });
 });
 
-// desc     forgot password
-//route     post /api/auth/forgotpassword
-//access    public
+
 exports.forgotPassword = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
@@ -108,9 +104,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse("Email could not be sent", 500));
   }
 });
-// desc     reset password
-//route     post /api/v1/auth/resetpassword/:resettoken
-//access    public
+
 exports.resetPassword = asyncHandler(async (req, res, next) => {
   //hash the token gotten back from the url
   const resetPasswordToken = crypto
@@ -141,9 +135,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
-// desc     update logged in user details
-//route     put /api/v1/auth/updatedetails
-//access    private
 exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   const fieldsToUpdate = {
     email: req.body.email,
@@ -158,9 +149,7 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: user });
 });
 
-// desc     update logged in user password
-//route     put /api/v1/auth/updatepassword
-//access    private
+
 exports.updatePassword = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
   if (!(await user.matchPassword(req.body.currentPassword))) {
@@ -172,9 +161,7 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
-// desc     logout user
-//route     get /api/v1/auth/logout
-//access    private
+
 exports.logout = asyncHandler(async (req, res, next) => {
   res.cookie("token", "none", {
     expires: new Date(Date.now() + 5 * 1000),

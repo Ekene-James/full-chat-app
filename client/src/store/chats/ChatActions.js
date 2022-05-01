@@ -59,12 +59,7 @@ export const localPostChatAsReceiver = (state) => {
       payload: state
     };
   };
-export const localPostChatAsReceiverFT = (state) => {
-    return {
-      type: 'LOCAL_POST_CHAT_AS_RECEIVER_FIRST_TIME',
-      payload: state
-    };
-  };
+
 export const localPostFileChat = (state) => {
     return {
       type: 'LOCAL_POST_FILE_CHAT',

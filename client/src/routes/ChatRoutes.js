@@ -8,12 +8,11 @@ import { getHome } from '../store/auth/AuthActions';
 import { AuthContext } from '../store/auth/AuthStore';
 
 import { ChatContext } from '../store/chats/ChatStore';
-import { onlineUsers,localPostChatAsReceiver,localdeleteSingleChatAsReceiver,isTyping,stopTyping,localPostChatAsReceiverFT, modal } from '../store/chats/ChatActions';
+import { onlineUsers,localPostChatAsReceiver,localdeleteSingleChatAsReceiver,isTyping,stopTyping, modal } from '../store/chats/ChatActions';
 import MyProfile from '../pages/chats/MyProfile';
 import SingleModal from '../components/modals/SingleModal';
 import DeleteProfile from '../components/modals/modalContents/DeleteProfile';
-import CustomModal from '../components/modals/CustomModal';
-import ContentsContainer from '../components/modals/ContentsContainer';
+
 
 
 function ChatRoutes() {
@@ -139,11 +138,7 @@ React.useMemo(() => {
       >
       <DeleteProfile/>
      </SingleModal>
-      <CustomModal show={chatCtx.state.modal.open} handleClose={() => { chatCtx.dispatch(modal({open:false,active:''})) }} 
-        title={chatCtx.state.modal.active}
-        >
-        <ContentsContainer/>
-      </CustomModal>
+     
       
      </>
     )

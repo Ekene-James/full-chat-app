@@ -220,7 +220,7 @@ React.useLayoutEffect(() => {
                    
                    <div className={classes.emojiCont} style={{display:openEmoji ? 'block' :'none'}}>
                       <CloseIcon className={classes.closeEmoji}  onClick={() => setopenEmoji(false)}/>
-                      <Picker onSelect={onEmojiClick} showPreview={false} showSkinTones={false} style={{width:'380px'}} />
+                      <Picker onSelect={onEmojiClick} showPreview={false} showSkinTones={false} style={{width:'100%'}} />
                    </div>
                    <SentimentVerySatisfiedIcon style={{marginLeft:'5px',cursor:'pointer'}} onClick={handleClickSmiley} />
                   

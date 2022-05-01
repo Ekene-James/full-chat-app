@@ -59,6 +59,7 @@
         bottom:104px;
         right:5px;
         position:absolute;
+        width: 380px;
         }
     .closeEmoji{
         top:-15px;
@@ -69,10 +70,7 @@
         z-index: 1000000;
         background:red;
         border-radius:0.5vw 0.5vw 0 0;
-        width: 100%;
-        height: 100%;
-        max-width: 1.5vw;
-        max-height: 1.5vw;
+     
     
     
     }
@@ -88,4 +86,13 @@
            .msgContainer::-webkit-scrollbar-thumb {
             background:gray;
             border-radius:40px;
+          }
+
+          @media screen and (max-width: 480px) {
+            .fileDispalyContainer {
+                width:100%;
+            }
+            .emojiCont {
+                width:280px;
+            }
           }

@@ -27,6 +27,7 @@ export default function CollapseableItem({items}) {
     <>
       <ListItemButton onClick={handleClick}
       sx={{
+        flexGrow: { xs: '0.03', sm: '1' },
         '&:hover': { background:'rgba(255,255,255,0.5)'},
       }}
       >

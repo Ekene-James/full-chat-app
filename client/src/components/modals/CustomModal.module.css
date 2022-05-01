@@ -83,3 +83,17 @@
        transform:scale(0);
      }  
  }
+
+ @media screen and (max-width: 480px) {
+  .container {
+
+    width:90%;
+    height:auto;
+    padding:20px;
+
+    }
+  .h6 {
+    top:2px;
+
+    }
+}

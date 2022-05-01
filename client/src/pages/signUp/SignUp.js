@@ -125,14 +125,14 @@ function SignUp() {
                         value={state.password}
                     />
                 </Grid>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',width:'30%',margin:'auto'}}>
+                <div className={classes.btnContainer}>
                     <Link className={classes.link} to='/login'>
                     <Button startIcon={<ArrowBackIosIcon />} variant="contained" type='button' color="secondary" >
                         Login
                     </Button>
 
                     </Link>
-                    <Button variant="contained" type='submit' color="primary" disabled={authCtx.state.loading} >
+                    <Button variant="contained" type='submit' color="primary" disabled={authCtx.state.loading} sx={{ml:1}} >
                         Sign Up
                     </Button>
 

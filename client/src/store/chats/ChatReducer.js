@@ -68,24 +68,7 @@ export const ChatReducer = (state, action) => {
           };
         
     
-        case "LOCAL_POST_CHAT_AS_RECEIVER_FIRST_TIME" : 
-       
-        return {
-            ...state,
-            individualChats : {
-              ...state.individualChats,
-              [action.payload.senderId]:{
-               chatStructure:{
-                youBlocked:false,
-                receiverBlocked:false,
-                isFirstMsg:false,
-               },
-              data:[action.payload],
-              getFirstLoad:true
-              }
-            }
-           
-          };
+    
         case "LOCAL_POST_FILE_CHAT" : 
         return {
             ...state,

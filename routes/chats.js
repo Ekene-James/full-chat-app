@@ -4,7 +4,7 @@ const Chats = require("../models/Chats");
 
 const router = express.Router({ mergeParams: true });
 const {
-//  getAllChatWith,
+
   postChat,
   getChats,
   firstLoadWithUser,
@@ -18,11 +18,11 @@ const { protect } = require("../middleware/authMiddleware");
 
 router
   .route("/")
- // .get(protect,getAllChatWith)
+
   .post(protect, postChat);
 router
   .route("/file")
- // .get(protect,getAllChatWith)
+
   .post(protect, postNormalFileupload);
 router
   .route("/singleChat/:id")

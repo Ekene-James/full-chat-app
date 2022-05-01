@@ -66,7 +66,7 @@ export default function ProfileSettings() {
     }
   
   return (
-    <Box sx={{ flexGrow: 1, marginTop:'30px',width:'60%' }}>
+    <Box sx={{ flexGrow: 1, marginTop:'30px', width: { xs: '90%', sm: '60%' } }}>
       <Grid container spacing={2} sx={{width:'100%'}}>
      
         <Grid item xs={12} >
@@ -119,7 +119,7 @@ export default function ProfileSettings() {
     
     </Grid>
     <Grid container spacing={2} sx={{  marginTop:'20px' }}>
-    <Grid item xs={5}>
+    <Grid item xs={12} sm={5}>
     <input
         style={{display:'none'}}
         id='profilePix'
@@ -132,7 +132,7 @@ export default function ProfileSettings() {
     </Grid>
     {
         file?.name &&
-        <Grid item xs={7} sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <Grid item  xs={12} sm={7} sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
           
               
             
@@ -155,7 +155,7 @@ export default function ProfileSettings() {
     }
     </Grid>
       <Grid container spacing={2} sx={{  marginTop:'20px' }}>
-      <Grid item xs={5}>
+      <Grid item xs={12} sm={5}>
         <Button fullWidth variant="contained" onClick={handleUpdateProfile} color="primary" disabled={authCtx?.state.loadings.updateProfile} >
             Update Profile
         </Button>

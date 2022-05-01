@@ -7,21 +7,13 @@ const ErrorResponse = require("../utils/errorResponse");
 const fs = require('fs')
 
 
-// desc     get a single courses
-//route     get /api/v1/courses/:id
-//access    public
 exports.getChats = asyncHandler(async (req, res, next) => {
   res.status(200).json(res.advancedResults);
 });
 
-// desc     create a course for a bootcamp
-//route     post /api/chats/
-//access    private
+
 exports.postChat = asyncHandler(async (req, res, next) => {
 
-  // const data = {
-  //   chatBetween:[req.user.id,req.body.receiver],
-  // }
   const filter1 ={user:req.user.id};
   const filter2 ={user:req.body.receiverId};
   
@@ -62,14 +54,10 @@ exports.postChat = asyncHandler(async (req, res, next) => {
   });
 });
 
-// desc     create a course for a bootcamp
-//route     post /api/chats/
-//access    private
+
 exports.firstLoadWithUser = asyncHandler(async (req, res, next) => {
 
-  // const data = {
-  //   chatBetween:[req.user.id,req.body.receiver],
-  // }
+
   const filter1 ={user:req.user.id};
   const filter2 ={user:req.params.receiverId};
   
@@ -90,10 +78,7 @@ exports.firstLoadWithUser = asyncHandler(async (req, res, next) => {
   if(chatStructure2.blockedContacts.includes(req.user.id)){
     msg.receiverBlocked = true;
   };
-  // "chatsWith.userId": {
-  //   $in : req.params.receiverId
-  // }
-  //  "chatsWith.userId": req.params.receiverId
+
 
   const isInChatWith = await ChatStructure.findOne({
     user:req.user.id,
@@ -117,9 +102,7 @@ exports.firstLoadWithUser = asyncHandler(async (req, res, next) => {
 });
 
 
-// desc     delete a course for a bootcamp
-//route     delete /api/v1/courses/:id
-//access    private
+
 exports.deleteChat = asyncHandler(async (req, res, next) => {
   const chat = await Chats.findById(req.params.id);
   
@@ -143,7 +126,7 @@ if(chat.msgType !== 'txt'){
     data: {}
   });
 });
-// "chatBetween": {$in : [req.user.id,req.params.id]},
+
 
 exports.deleteChatForMe = asyncHandler(async (req, res, next) => {
  
@@ -188,9 +171,6 @@ const clearSentMsgs = await Chats.updateMany({chatBetween: {$eq : [req.user.id,r
 
 });
 
-// desc     post upload
-//route     get /api/v1/bootcamps/:id/photo
-//access    public
 exports.postNormalFileupload = asyncHandler(async (req, res, next) => {
 
   if (!req.files) {
@@ -198,9 +178,7 @@ exports.postNormalFileupload = asyncHandler(async (req, res, next) => {
   }
   const file = req.files.chat_file;
 
-  // if (!file.mimetype.startsWith("image")) {
-  //   return next(new ErrorResponse(`Please upload only a photo file`, 404));
-  // }
+
   if (file.size > 16 * 1000 * 1000) {
     return next(
       new ErrorResponse(
