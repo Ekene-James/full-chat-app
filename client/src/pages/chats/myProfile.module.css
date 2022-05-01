@@ -1,0 +1,18 @@
+.container{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction : column;
+    width:100%;
+    color:black;
+}
+.img{
+width:250px;
+height:250px;
+border-radius: 50%;
+object-fit: cover;
+object-position: center;
+margin: 15px 0px;
+border:1px solid grey;
+
+}

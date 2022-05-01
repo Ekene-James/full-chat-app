@@ -1,0 +1,38 @@
+.paper {
+    padding: 10px;
+    width : 350px;
+    height : 400px;
+    margin :  100px auto;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction : column;
+   
+   }
+.form {
+    margin : 15px 0;
+   
+   }
+.signUp {
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    width:50%
+   
+   }
+   .txtField {
+    margin-top : 25px;
+   
+   }
+.link {
+    margin-bottom : 30px;
+    cursor: pointer;
+   
+   }
+   .bg {
+    height : 100vh;
+    background: url("../../../public/img/loginBg.jpg") no-repeat center center/cover;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+   }

@@ -1,0 +1,138 @@
+.chatContainer{
+  margin: 5px 0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: transparent;
+  width: 100%;
+ 
+}
+.selfContainer{
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: transparent;
+  width: 100%;
+ 
+    
+}
+.chatImg{
+  height: 90px;
+  width: 100%;
+  object-fit: contain;
+
+  margin-top:2px;
+
+}
+.chatTxt{
+  color: white;
+  word-break: break-word;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 2px;
+  text-align: left;
+  line-height: 1.5em;
+
+}
+.from{
+
+  word-break: break-word;
+  text-align: left;
+  margin: 0;
+  margin-right: 2px;
+  width:auto;
+  font-size: 13px;
+  width: 100%;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.txt{
+ width:80%;
+}
+.selfFrom{
+  color: yellow !important;
+  width:auto;
+  margin: 0 3px;
+  margin-left:0;
+  font-size: 13px;
+  width: 100%;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.chat{
+  color: white;
+  width: auto;
+  max-width: 60%;
+  min-width: 30%;
+  border: 0px solid white;
+  display: flex;
+  padding: 13px 13px;
+  background: #111;
+
+  overflow: hidden;
+  align-items: flex-start;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+
+  border-top-left-radius: 0px;
+}
+.selfChat{
+color: white;
+width: auto;
+max-width: 60%;
+min-width: 30%;
+border: 0px solid white;
+display: flex;
+padding: 13px;
+background: #111;
+
+overflow: hidden;
+align-items: flex-end;
+border-radius: 8px;
+flex-direction: column;
+justify-content: center;
+
+border-top-right-radius: 0px;
+
+}
+.iconCont{
+  height: 19px;
+  width: 60%;
+  display: flex;
+  background: #111;
+  border: 0;
+  align-items: center;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 2px;
+}
+.time{
+  font-size:10px;
+  font-weight:500;
+  color:grey;
+  width:auto;
+  min-width:fit-content;
+  cursor:auto;
+  white-space: noWrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+ .timeCont{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+ 
+}

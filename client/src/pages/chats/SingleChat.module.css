@@ -1,0 +1,91 @@
+.container {
+    padding:0px;
+    margin: 0px;
+    width:100%;
+    height: 86vh;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction : column;
+    }
+.msgContainer {
+    margin: 0px;
+    padding: 0px;
+    width:100%;
+    height: 80%;
+    overflow-y: scroll;
+    }
+    .form {
+        margin: 0px;
+    padding: 0px;
+        width:100%;
+        height: 14%;
+        display : flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction : column;
+   
+    }
+
+    .btnContainer {
+    width:100%;
+    display : flex;
+    margin-top: 2px;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    position:relative;
+
+    }
+    .fileDispalyContainer {
+        background:rgba(0,0,0,0.8);
+        padding:1.5px;
+        padding-left:7px;
+        text-align:start;
+        width:40%;
+        color:white;
+        align-self:flex-start;
+        border-radius:5px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+    }
+
+
+
+      .emojiCont{
+        bottom:104px;
+        right:5px;
+        position:absolute;
+        }
+    .closeEmoji{
+        top:-15px;
+        position:absolute;
+        cursor:pointer;
+        color:white;
+        left:0;
+        z-index: 1000000;
+        background:red;
+        border-radius:0.5vw 0.5vw 0 0;
+        width: 100%;
+        height: 100%;
+        max-width: 1.5vw;
+        max-height: 1.5vw;
+    
+    
+    }
+        .msgContainer::-webkit-scrollbar {
+            width: .4em;
+           
+          }
+           .msgContainer::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+            
+          }
+           .msgContainer::-webkit-scrollbar-thumb {
+            background:gray;
+            border-radius:40px;
+          }

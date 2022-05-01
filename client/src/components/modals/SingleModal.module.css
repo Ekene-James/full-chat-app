@@ -1,0 +1,46 @@
+
+.popIn{
+  position:absolute;
+  top:0;
+  left:0;
+  animation : in 1s ease-in-out forwards;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+
+}
+.popOut{
+  position:absolute;
+  top:0;
+  left:0;
+  animation : out 1s ease-in-out forwards;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+
+}
+
+@keyframes in  {
+   from {
+       transform:scale(0);
+      }
+    to{
+      transform:scale(1);
+    }  
+}
+  @keyframes out  {
+    from {
+      transform:scale(1);
+      }
+    to{
+      transform:scale(0);
+    }  
+}

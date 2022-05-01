@@ -1,0 +1,30 @@
+.paper {
+    padding: 25px;
+    width:60%;
+    margin:auto;
+    margin-top: 15%;
+    
+    overflow: hidden;
+
+   }
+.container{
+   margin:0;
+    height : 100vh;
+    background: url("../../../public/img/loginBg.jpg") no-repeat center center/cover;
+   
+    overflow: hidden;
+
+   }
+.form{
+    width:100%;
+   }
+
+.sc{
+    border: 1px solid rgb(126,118,254);
+    border-radius: 3px;
+    padding: 5px;
+   }
+ 
+.link {
+   text-decoration:none;
+   };
