@@ -8,7 +8,7 @@ function Chats() {
 
 
     return (
-        <div style={{width:'100%',height:'90vh',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',textAlign:'center'}}>
+        <div style={{width:'100%',height:'80vh',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',textAlign:'center',overflow:'hidden'}}>
             <Typography variant="h5" gutterBottom>
                 Hi, Welcome to Chat center.
             </Typography>
