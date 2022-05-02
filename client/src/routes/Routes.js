@@ -30,7 +30,7 @@ function AppRoutes() {
   }, [authCtx.state.isAuthenticated])
     React.useMemo(() => {
     if(!authCtx.state.isAuthenticated)return
-      socket.current = io("ws://localhost:5000",{
+      socket.current = io("ws://https://home-chat-app.herokuapp.com",{
         withCredentials: true,
         extraHeaders: {
           "my-custom-header": "abcd"
