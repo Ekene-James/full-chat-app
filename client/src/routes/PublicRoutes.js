@@ -6,7 +6,8 @@ import SignUp from '../pages/signUp/SignUp'
 function PublicRoutes() {
     return (
         <Routes>
-            <Route path='/login' element={<Login/>} />
+            <Route path='/' element={<Login/>} />
+            <Route path='/login' index element={<Login/>} />
             <Route path='signup' element={<SignUp/>} />
             <Route path='resetpassword/:resetToken' element={<ResetPassword/>} />
          {  
