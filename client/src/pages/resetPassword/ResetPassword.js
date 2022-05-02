@@ -1,22 +1,24 @@
 import React,{useContext} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { Paper , Button,TextField,  } from '@mui/material';
 import { AuthContext } from '../../store/auth/AuthStore';
 import {  handleSnackBar, resetPassword } from '../../store/auth/AuthActions';
 import classes from './ResetPassword.module.css'
+
 import CustomizedSnackbars from '../../components/snackBar/SnackBar';
 
 
 function ResetPassword() {
     const{resetToken} =useParams()
     const authCtx = useContext(AuthContext);
+    const navigate = useNavigate()
     const [state, setstate] = React.useState({
         password : '',
     })
   
   const onLogin = e => {
       e.preventDefault();
-        authCtx.dispatch(resetPassword(state,resetToken,authCtx.dispatch))
+        authCtx.dispatch(resetPassword(state,resetToken,authCtx.dispatch,navigate))
 
   }
   

@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 
 function SignUp() {
  
-    const history = useNavigate()
+    const navigate = useNavigate()
     const authCtx = React.useContext(AuthContext);
     const [state, setstate] = React.useState({
         name:'',
@@ -26,7 +26,7 @@ function SignUp() {
         role:'user'
     }
     
-    authCtx.dispatch(register(data,authCtx.dispatch))
+    authCtx.dispatch(register(data,authCtx.dispatch,navigate))
      
 
   }

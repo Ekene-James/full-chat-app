@@ -1,5 +1,6 @@
 import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { Paper , Button,TextField,  } from '@mui/material';
 import { AuthContext } from '../../store/auth/AuthStore';
 import { handleSingleModals, handleSnackBar, login } from '../../store/auth/AuthActions';
@@ -11,6 +12,7 @@ import ForgotPassword from '../../components/modals/modalContents/ForgotPassword
 function Login() {
  
     const authCtx = useContext(AuthContext);
+      const navigate = useNavigate();
     const [state, setstate] = React.useState({
         email:'',
         password : '123456',
@@ -21,7 +23,7 @@ function Login() {
       e.preventDefault();
 
       if(state.email){
-        authCtx.dispatch(login(state,authCtx.dispatch))
+        authCtx.dispatch(login(state,authCtx.dispatch,navigate))
     }
   }
   const handleOpenModal = e => {

@@ -27,7 +27,8 @@ import CustomModal from '../modals/CustomModal';
 import ContentsContainer from '../modals/ContentsContainer';
 import { ChatContext } from '../../store/chats/ChatStore';
 import { modal,blockContact,unBlockContact,clearState, handleSnackBar } from '../../store/chats/ChatActions';
-import {useParams,Link,useLocation} from 'react-router-dom';
+import {useParams,Link,useLocation,useNavigate} from 'react-router-dom';
+
 
 import PersonIcon from '@mui/icons-material/Person';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
@@ -56,7 +57,8 @@ function Dashboard(props) {
   const authCtx = React.useContext(AuthContext);
   const chatCtx = React.useContext(ChatContext);
   const messageReceiver = useParams().id
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [chatWith, setchatWith] = React.useState({});
 
@@ -91,7 +93,7 @@ function Dashboard(props) {
   };
   const handleLogout = () => {
     disconnect()
-    authCtx.dispatch(logout())
+    authCtx.dispatch(logout(navigate))
     chatCtx.dispatch(clearState())
   };
 
@@ -332,6 +334,11 @@ function Dashboard(props) {
       >
       <ContentsContainer/>
     </CustomModal>
+    
+    <SingleModal show={authCtx.state.singleModals.deleteProfileModal}
+    >
+    <DeleteProfile/>
+   </SingleModal>
     </Box>
   );
 }

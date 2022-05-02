@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from './store/auth/AuthStore';
 import ChatContextProvider from './store/chats/ChatStore';
 import { StyledEngineProvider } from '@mui/material/styles';
+import {BrowserRouter} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
   <ChatContextProvider>
     <StyledEngineProvider injectFirst>
+    <BrowserRouter>
       <App />
+      </BrowserRouter>
     </StyledEngineProvider>
   </ChatContextProvider>
   </AuthContextProvider>,

@@ -76,7 +76,7 @@ export const setCurrentUser = user => {
       payload: state
     };
   };
-  const signUserIn = (token,dispatch) => {
+  const signUserIn = (token,dispatch,navigate) => {
 
     localStorage.setItem("user", JSON.stringify({token}));
     //set token as auth header using axios
@@ -90,6 +90,7 @@ export const setCurrentUser = user => {
      type : 'LOGIN',
      payload:cred
     }) 
+    navigate(`/chat`);
   }
   const handleError = (error,dispatch) => {
         let msg ;
@@ -104,12 +105,12 @@ export const setCurrentUser = user => {
           msg:msg
       }))
   }
-export const login =async (state,dispatch) => {
+export const login =async (state,dispatch,navigate) => {
     dispatch(isLoading(true))
    
     try {
         const user = await axios.post("/api/auth/login",state)
-        signUserIn(user.data.token,dispatch)
+        signUserIn(user.data.token,dispatch,navigate)
      
     } catch (error) {
         console.log(error)
@@ -119,12 +120,12 @@ export const login =async (state,dispatch) => {
 
     
 }
-export const logout = ()  => {
+export const logout = (navigate)  => {
     //clear local storage
     localStorage.removeItem("user");
     //clear authHeader
     setAuthToken(false);
-
+    navigate(`/login`);
   
    return {
         type: 'LOGOUT'  
@@ -147,7 +148,7 @@ return {
     
 }
 
-export const register = async(data,dispatch) => {
+export const register = async(data,dispatch,navigate) => {
     dispatch(isLoading(true))
 
     try {
@@ -155,7 +156,7 @@ export const register = async(data,dispatch) => {
     
         //if(user.status === 200) history('/login')
     
-        signUserIn(user.data.token,dispatch)
+        signUserIn(user.data.token,dispatch,navigate)
     } catch (error) {
         dispatch(isLoading(false))
         console.log(error.response)
@@ -167,7 +168,7 @@ export const register = async(data,dispatch) => {
 
     
 }
-export const resetPassword = async(data,token,dispatch) => {
+export const resetPassword = async(data,token,dispatch,navigate) => {
     dispatch(handleLoadings({resetPasswordLoading:true}))
     
    
@@ -180,7 +181,7 @@ export const resetPassword = async(data,token,dispatch) => {
             open:true,
             msg:'Password changed'
         }))
-        signUserIn(user.data.token,dispatch)
+        signUserIn(user.data.token,dispatch,navigate)
 
     } catch (error) {
         dispatch(handleLoadings({resetPasswordLoading:false}))
