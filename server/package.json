@@ -5,23 +5,22 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node server",
+    "start": "NODE_ENV=production node dist/server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client/",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "babel src -d dist"
+    "build": "babel server.js -d dist"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.7",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "nodemon": "^2.0.2"
-  },
-  "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^7.1.0",
