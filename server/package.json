@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node dist/server.js",
-    "server": "nodemon server.js",
+    "server": "nodemon src/server.js",
     "client": "npm start --prefix ../client/",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "babel server.js -d dist"
+    "build": "babel src -d dist"
   },
   "author": "",
   "license": "ISC",
