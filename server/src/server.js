@@ -139,6 +139,7 @@ io.on("connection", (socket) => {
 
 //mount the routers
 
+app.get("/hello", (_, res) => res.send("Hello from chat app"));
 app.use("/api/auth", auth);
 app.use("/api/chatStructure", chatStructure);
 app.use("/api/chats", chats);
