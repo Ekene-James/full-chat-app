@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const http = require('http').Server(app);
-const io = require('socket.io')(http,{
+const http = require("http").Server(app);
+const io = require("socket.io")(http, {
   cors: {
-  //  origin: "http://localhost:3000",
-   origin: "*"
-  }
+    //  origin: "http://localhost:3000",
+    origin: "*",
+  },
 });
 
 const crypto = require("crypto");
@@ -32,9 +32,7 @@ const chatStructure = require("./routes/chatStructure");
 
 const errorHandler = require("./middleware/error");
 
-dotenv.config({ path: "./config/config.env" });
-
-
+dotenv.config({ path: ".env" });
 
 //body parser
 app.use(express.json());
@@ -47,7 +45,7 @@ app.use(hpp());
 app.use(cors());
 const limit = rateLimit({
   windowMs: 10 * 60 * 1000, //10mins
-  max: 100
+  max: 100,
 });
 app.use(limit);
 //set static folder
@@ -57,37 +55,34 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 //connect to db
- const db = process.env.MONGO_URI
-
+const db = process.env.MONGO_URI;
+// console.log(db);
 mongoose
   .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
-  .then(connections => {
+  .then((connections) => {
     console.log(`mongodb connected `.cyan.underline.bold);
   })
-  .catch(err => console.log(`${err.message}`.red.bold));
-
- 
-
+  .catch((err) => console.log(`${err.message}`.red.bold));
 
 // socket helper functions
-  let users = [];
+let users = [];
 
-  const addUser = (userDetails, socketId) => {
-    !users.some((user) => user.id === userDetails.id) &&
-      users.push({ ...userDetails, socketId });
-  };
-  
-  const removeUser = (socketId) => {
-    users = users.filter((user) => user.socketId !== socketId);
-  };
-  
-  const getUser = (userId) => {
-    return users.find((user) => user.id === userId);
-  };
+const addUser = (userDetails, socketId) => {
+  !users.some((user) => user.id === userDetails.id) &&
+    users.push({ ...userDetails, socketId });
+};
+
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (userId) => {
+  return users.find((user) => user.id === userId);
+};
 
 //setup socket connection
 io.on("connection", (socket) => {
@@ -96,54 +91,43 @@ io.on("connection", (socket) => {
 
   //take userId and socketId from user
   socket.on("addUser", (user) => {
- 
     addUser(user, socket.id);
     io.emit("getUsers", users);
   });
 
   //send and get message
   socket.on("sendMessage", (msg) => {
-
     const user = getUser(msg.receiverId);
-    if(user){
+    if (user) {
       io.to(user.socketId).emit("getMessage", msg);
-
     }
   });
   //delete message
   socket.on("deleteMessage", (msg) => {
-
     const user = getUser(msg.receiverId);
-    if(user){
+    if (user) {
       io.to(user.socketId).emit("getDeleteMessage", msg);
-
     }
   });
-  
+
   socket.on("stop_typing", (msg) => {
-
     const user = getUser(msg.sendTo);
-    if(user){
+    if (user) {
       io.to(user.socketId).emit("stop_is_typing", msg);
-
     }
   });
   socket.on("typing", (msg) => {
-
     const user = getUser(msg.sendTo);
-    if(user){
+    if (user) {
       io.to(user.socketId).emit("is_typing", msg);
-
     }
   });
 
   socket.on("logout", () => {
-    
     removeUser(socket.id);
     io.emit("getUsers", users);
     socket.disconnect();
   });
-
 
   //when disconnect
   socket.on("disconnect", () => {
@@ -153,13 +137,12 @@ io.on("connection", (socket) => {
   });
 });
 
-
 //mount the routers
 
 app.use("/api/auth", auth);
 app.use("/api/chatStructure", chatStructure);
 app.use("/api/chats", chats);
- 
+
 app.use(errorHandler);
 
 if (process.env.NODE_ENV === "production") {
