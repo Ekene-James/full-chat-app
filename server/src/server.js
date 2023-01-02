@@ -1,11 +1,23 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const http = require("http").Server(app);
-const io = require("socket.io")(http, {
+// const http = require("http").Server(app);
+// const io = require("socket.io")(http, {
+//   cors: {
+//     // origin: "http://localhost:3000",
+//     origin: "*",
+//   },
+// });
+
+const http = require("http");
+const socket = require("socket.io");
+const server = http.createServer(app);
+
+const io = socket(server, {
   cors: {
-    //  origin: "http://localhost:3000",
-    origin: "*",
+    origin: ["http://localhost:3000", "https://mydemochat.netlify.app"],
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -49,7 +61,7 @@ const limit = rateLimit({
 });
 app.use(limit);
 //set static folder
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public", "/uploads")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -85,6 +97,7 @@ const getUser = (userId) => {
 };
 
 //setup socket connection
+
 io.on("connection", (socket) => {
   //when ceonnect
   console.log("a user connected.");
@@ -122,6 +135,18 @@ io.on("connection", (socket) => {
       io.to(user.socketId).emit("is_typing", msg);
     }
   });
+  socket.on("block", (msg) => {
+    const user = getUser(msg.socketReceiverId);
+    if (user) {
+      io.to(user.socketId).emit("get_block", msg);
+    }
+  });
+  socket.on("unBlock", (msg) => {
+    const user = getUser(msg.socketReceiverId);
+    if (user) {
+      io.to(user.socketId).emit("get_unblock", msg);
+    }
+  });
 
   socket.on("logout", () => {
     removeUser(socket.id);
@@ -148,13 +173,19 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = http.listen(
-  PORT,
+// const server = http.listen(
+//   PORT,
+//   console.log(
+//     `App listening on PORT: ${PORT}! and on mode : ${process.env.NODE_ENV}`
+//       .yellow.bold
+//   )
+// );
+server.listen(PORT, function () {
   console.log(
     `App listening on PORT: ${PORT}! and on mode : ${process.env.NODE_ENV}`
       .yellow.bold
-  )
-);
+  );
+});
 process.on("unhandledRejection" || "uncaughtException", (err, promise) => {
   console.log(`error : ${err.message}`);
   server.close(() => process.exit(1));

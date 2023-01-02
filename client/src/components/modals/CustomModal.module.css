@@ -1,99 +1,91 @@
 .popIn {
-    top:0;
-    left:0;
-    position:absolute;
-    align-content:center;
-    animation : in 1s ease-in-out forwards;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(0,0,0,0.6);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:10007;
- 
-  }
-  .popOut{
-  
-    position:absolute;
-    top:0;
-    left:0;
-    animation : out 1s ease-in-out forwards;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(0,0,0,0.6);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:10007;
-   
-  }
-  .container {
-  background: rgba(0,0,0,0.8);
+  top: 0;
+  left: 0;
+  position: absolute;
+  align-content: center;
+  animation: in 1s ease-in-out forwards;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10007;
+  overflow: hidden !important;
+}
+.popOut {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: out 1s ease-in-out forwards;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10007;
+  overflow: hidden !important;
+}
+.container {
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(1vw) saturate(2);
   -webkit-backdrop-filter: blur(1vw) saturate(2);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:10007;
-  padding:5px;
-  width:50%;
-  height:50%;
-  flex-direction:column;
-  border-radius:0.75vw;
-  position:relative;
- 
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10007;
+  padding: 5px;
+  width: 50%;
+  height: 50%;
+  flex-direction: column;
+  border-radius: 0.75vw;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+  cursor: pointer;
+  z-index: 100000;
+  color: white;
+}
+
+.h6 {
+  position: absolute;
+  top: 0.5vw;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 2px;
+  color: white;
+  width: auto;
+}
+
+@keyframes in {
+  from {
+    transform: scale(0);
   }
-    
-  .close{
-      position:absolute;
-      top:0.5vw;
-      right:0.5vw;
-      cursor:pointer;
-      z-index:100000;
-      color:white;
-      }
- 
-      .h6{
-        position:absolute;
-        top:0.5vw;
-          font-weight:700;
-          margin: 0;
-          padding-bottom:2px;
-          color:white;
-          width:auto
-           
-           
-           }
-           
-@keyframes in  {
-    from {
-        transform:scale(0);
-       }
-     to{
-       transform:scale(1);
-     }  
- }
-   @keyframes out  {
-     from {
-       transform:scale(1);
-       }
-     to{
-       transform:scale(0);
-     }  
- }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes out {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
 
- @media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .container {
-
-    width:90%;
-    height:auto;
-    padding:20px;
-
-    }
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
   .h6 {
-    top:2px;
-
-    }
+    top: 2px;
+  }
 }

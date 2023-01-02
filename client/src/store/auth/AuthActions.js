@@ -15,6 +15,12 @@ export const handleUpdateUserProfile = (state) => {
     payload: state,
   };
 };
+export const addChatsWith = (state) => {
+  return {
+    type: "ADD_CHATS_WITH",
+    payload: state,
+  };
+};
 export const setReceiverProfile = (state) => {
   return {
     type: "RECEIVER_PROFILE",

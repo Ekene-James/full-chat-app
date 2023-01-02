@@ -27,14 +27,16 @@ exports.protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.authorize = (...roles) => (req, res, next) => {
-  if (!roles.includes(req.user.role)) {
-    return next(
-      new ErrorResponse(
-        `User role : '${req.user.role}' not permitted to Access This Route`,
-        403
-      )
-    );
-  }
-  next();
-};
+exports.authorize =
+  (...roles) =>
+  (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new ErrorResponse(
+          `User role : '${req.user.role}' not permitted to Access This Route`,
+          403
+        )
+      );
+    }
+    next();
+  };
