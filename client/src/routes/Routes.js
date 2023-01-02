@@ -38,12 +38,16 @@ function AppRoutes() {
   React.useMemo(() => {
     if (!authCtx.state.isAuthenticated) return;
     // ws://localhost:5000
-    socket.current = io("ws://localhost:5000", {
-      withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd",
-      },
-    });
+    socket.current = io(
+      // `ws://${process.env.REACT_APP_BACKEND_SERVER_WITHOUT_HTTP}`,
+      `${process.env.REACT_APP_BACKEND_SERVER}`,
+      {
+        withCredentials: true,
+        extraHeaders: {
+          "my-custom-header": "abcd",
+        },
+      }
+    );
     socket.current.on("connect", () => {
       console.log("connected");
     });
