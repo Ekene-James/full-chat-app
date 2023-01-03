@@ -191,8 +191,9 @@ exports.uploadDp = asyncHandler(async (req, res, next) => {
       )
     );
   }
+  const rand1000 = Math.floor(Math.random() * 1000);
 
-  file.name = `profile_${req.user.id}_${Date.now()}${
+  file.name = `profile_${req.user.id}_${rand1000}_${Date.now()}${
     path.parse(file.name).ext
   }`;
   // console.log(process);
