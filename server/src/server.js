@@ -168,7 +168,7 @@ app.get("/hello", (_, res) => res.send("Hello from chat app"));
 app.use("/api/auth", auth);
 app.use("/api/chatStructure", chatStructure);
 app.use("/api/chats", chats);
-app.use("/file", express.static(__dirname + "/public/uploads"));
+app.use("/file", express.static(path.join(__dirname, "/public", "/uploads")));
 
 app.use(errorHandler);
 
