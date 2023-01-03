@@ -168,18 +168,12 @@ app.get("/hello", (_, res) => res.send("Hello from chat app"));
 app.use("/api/auth", auth);
 app.use("/api/chatStructure", chatStructure);
 app.use("/api/chats", chats);
+app.use("/file", express.static(__dirname + "/public/uploads"));
 
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// const server = http.listen(
-//   PORT,
-//   console.log(
-//     `App listening on PORT: ${PORT}! and on mode : ${process.env.NODE_ENV}`
-//       .yellow.bold
-//   )
-// );
 server.listen(PORT, function () {
   console.log(
     `App listening on PORT: ${PORT}! and on mode : ${process.env.NODE_ENV}`

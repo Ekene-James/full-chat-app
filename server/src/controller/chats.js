@@ -215,7 +215,7 @@ exports.postNormalFileupload = asyncHandler(async (req, res, next) => {
     const chats = await Chats.create({
       ...req.body,
       fileName: file.name,
-      msg: `${process.env.BACK_END_URL}/${file.name}`,
+      msg: `${process.env.BACK_END_URL}/file/${file.name}`,
       chatBetween: [req.user.id, req.body.receiverId],
       whoShouldSee: [req.user.id, req.body.receiverId],
     });

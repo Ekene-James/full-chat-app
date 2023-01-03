@@ -207,7 +207,7 @@ exports.uploadDp = asyncHandler(async (req, res, next) => {
     const data = await User.findOneAndUpdate(
       { _id: req.user.id },
       {
-        dp: `${process.env.BACK_END_URL}/${file.name}`,
+        dp: `${process.env.BACK_END_URL}/file/${file.name}`,
 
         fileName: file.name,
       },
