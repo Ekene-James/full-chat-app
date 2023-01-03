@@ -161,14 +161,18 @@ app.get("/hello", (_, res) => res.send("Hello from chat app"));
 app.use("/api/auth", auth);
 app.use("/api/chatStructure", chatStructure);
 app.use("/api/chats", chats);
+app.use("/file/*", express.static(path.join(__dirname, "/public", "/uploads")));
 
 app.use(errorHandler);
 
+app.get("/file/*", (req, res) => {
+  const paths = req.url.split("/");
+  // console.log(process.cwd());
+
+  res.sendFile(process.cwd() + `/src/public/uploads/${paths[2]}`);
+  // res.sendFile(path.resolve(__dirname, "/public", "/uploads", paths[2]));
+});
 if (process.env.NODE_ENV === "production") {
-  app.use("/file", express.static(path.join(__dirname, "/public", "/uploads")));
-  app.get("/file", (_, res) =>
-    res.render(path.resolve(__dirname, "/public", "/uploads"))
-  );
 }
 
 const PORT = process.env.PORT || 5000;

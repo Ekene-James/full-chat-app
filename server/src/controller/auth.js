@@ -214,7 +214,7 @@ exports.uploadDp = asyncHandler(async (req, res, next) => {
       { new: true }
     ).select("-chatStructure");
     if (req.body.old_pics) {
-      await fs.unlink(`./src/public/uploads/${req.body.old_pics}`, (err) => {
+      await fs.unlink(`src/public/uploads/${req.body.old_pics}`, (err) => {
         if (err) return console.log(err);
         console.log("removed");
       });

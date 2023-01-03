@@ -104,7 +104,7 @@ exports.deleteChat = asyncHandler(async (req, res, next) => {
     );
   }
   if (chat.msgType !== "txt") {
-    await fs.unlink(`./public/uploads/${chat.fileName}`, (err) => {
+    await fs.unlink(`src/public/uploads/${chat.fileName}`, (err) => {
       if (err) return console.log(err);
       console.log("removed");
     });
