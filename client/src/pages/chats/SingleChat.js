@@ -8,6 +8,7 @@ import { AuthContext } from "../../store/auth/AuthStore";
 import { ChatContext } from "../../store/chats/ChatStore";
 import Paper from "@mui/material/Paper";
 import classes from "./SingleChat.module.css";
+import { ObjectID } from "bson";
 import CustomizedSnackbars from "../../components/snackBar/SnackBar";
 import {
   postChat,
@@ -104,6 +105,7 @@ function SingleChat({ submit, socketDeleteMsg, emitStopTyping, emitIsTyping }) {
     );
     formData.append("senderName", authCtx.state.home.user.name);
     formData.append("msgType", msgType);
+    formData.append("_id", new ObjectID().toString());
     chatCtx.dispatch(uploadNormalFile(formData, chatCtx.dispatch));
   };
   const handleSubmit = (e) => {
@@ -120,6 +122,7 @@ function SingleChat({ submit, socketDeleteMsg, emitStopTyping, emitIsTyping }) {
       //   receiverName: authCtx.state.receiverProfile.txt,
       senderName: authCtx.state.home.user.name,
       msgType: "txt",
+      _id: new ObjectID().toString(),
       isFirstMsg:
         chatCtx?.state?.individualChats[messageReceiver]?.chatStructure
           ?.isFirstMsg,
